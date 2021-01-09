@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include<vector>
 using namespace std;
 int n;
@@ -16,18 +17,6 @@ void value_input(int value, vector<int> output,int index){
 		test_cases.push_back(output);	
 }
 
-int print_test_cases(int id){
-	for(int i=0;i<test_cases.size();i++){
-		cout<<"Test id "<<id++<<", ";
-		for(int j=0;j<test_cases[i].size();j++){
-			if(j==test_cases[i].size()-1){
-				cout<<test_cases[i][j]<<endl;
-			}
-			else cout<<test_cases[i][j]<<",";
-		}
-	}
-	return id;
-}
 
 int main(){
 	cin>>n;
@@ -57,12 +46,23 @@ int main(){
 		value_input(boundaries[i].close_to_max, output, i);
 	
 	}	
-	int id=print_test_cases(10000);
-	cout<<"Test id "<<id++<<", ";
+	int id=10000;
+	ofstream MyFile("bva.csv");
+
+	for(int i=0;i<test_cases.size();i++){
+		MyFile<<"Test id "<<id++<<", ";
+		for(int j=0;j<test_cases[i].size();j++){
+			if(j==test_cases[i].size()-1){
+				MyFile<<test_cases[i][j]<<endl;
+			}
+			else MyFile<<test_cases[i][j]<<",";
+		}
+	}
+	MyFile<<"Test id "<<id++<<", ";
 	for(int i=0;i<n;i++){
 		if(i==n-1){
-			cout<<boundaries[i].nom<<endl;
+			MyFile<<boundaries[i].nom<<endl;
 		}
-		else cout<<boundaries[i].nom<<",";
+		else MyFile<<boundaries[i].nom<<",";
 	}
 }
