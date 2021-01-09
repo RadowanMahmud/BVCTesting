@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include<vector>
 #include<queue>
 using namespace std;
@@ -21,13 +22,15 @@ void value_input(int value){
 
 
 int print_test_cases(int id){
+ 	ofstream MyFile("worstcase.csv");
+
 	for(int i=0;i<test_cases.size();i++){
-		cout<<"Test id "<<id++<<", ";
+		MyFile<<"Test id "<<id++<<", ";
 		for(int j=0;j<test_cases[i].size();j++){
 			if(j==test_cases[i].size()-1){
-				cout<<test_cases[i][j]<<endl;
+				MyFile<<test_cases[i][j]<<endl;
 			}
-			else cout<<test_cases[i][j]<<",";
+			else MyFile<<test_cases[i][j]<<",";
 		}
 	}
 	return id;
