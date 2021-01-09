@@ -13,14 +13,15 @@ struct Case{
 };
 vector<vector<int>> test_cases;
 
-void value_input(int value, vector<int> output){
-		output.push_back(value);
+void value_input(int value, vector<int> output,int index){
+		output.insert(output.begin()+index,value);
+		//output.push_back(value);
 		test_cases.push_back(output);	
 }
 
 int print_test_cases(int id){
 	for(int i=0;i<test_cases.size();i++){
-		cout<<"Test id "<<id++<<",";
+		cout<<"Test id "<<id++<<", ";
 		for(int j=0;j<test_cases[i].size();j++){
 			if(j==test_cases[i].size()-1){
 				cout<<test_cases[i][j]<<endl;
@@ -55,16 +56,16 @@ int main(){
 			}
 		}
 		
-		value_input(boundaries[i].min, output);
-		value_input(boundaries[i].close_to_min, output);
-		value_input(boundaries[i].lesser_than_min, output);
-		value_input(boundaries[i].max, output);
-		value_input(boundaries[i].close_to_max, output);
-		value_input(boundaries[i].larger_than_max, output);
+		value_input(boundaries[i].min, output, i);
+		value_input(boundaries[i].close_to_min, output, i);
+		value_input(boundaries[i].lesser_than_min, output, i);
+		value_input(boundaries[i].max, output, i);
+		value_input(boundaries[i].close_to_max, output, i);
+		value_input(boundaries[i].larger_than_max, output, i);
 	
 	}	
 	int id=print_test_cases(10000);
-	cout<<"Test id "<<id++<<",";
+	cout<<"Test id "<<id++<<", ";
 	for(int i=0;i<n;i++){
 		if(i==n-1){
 			cout<<boundaries[i].nom<<endl;
